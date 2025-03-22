@@ -7,13 +7,16 @@ import org.springframework.stereotype.Component;
 public class primeUser {
 
     //@Autowired
-    Order order;
+    public final Order order; // can make immutable while using constructor injection
 
-    @Autowired
-    public void setOrderDependency(Order order){
-        this.order = order;
-    }
-    public primeUser(){
+//    @Autowired
+//    public void setOrderDependency(Order order){
+//        this.order = order;
+//    }
+
+    @Autowired //optional
+    public primeUser(Order order){
+        this.order = order ;
         System.out.println("initializing primeUser");
     }
 
