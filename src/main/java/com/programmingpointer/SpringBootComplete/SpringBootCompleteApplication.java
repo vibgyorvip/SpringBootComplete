@@ -9,7 +9,7 @@ public class SpringBootCompleteApplication {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(SpringBootCompleteApplication.class, args);
-		context.close();
+		//context.close();
 	}
 
 }
