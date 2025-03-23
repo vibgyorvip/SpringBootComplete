@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,11 +17,20 @@ public class UserController {
 
     @Qualifier("OnlineOrderObject")
     @Autowired
-    OrderList order;
+    OrderList onlineOrderObj;
+
+    @Qualifier("OfflineOrderObject")
+    @Autowired
+    OrderList offlineOrderObj;
 
     @PostMapping("/createOrder")
-    public ResponseEntity<String> createOrder(){
-        order.createOrder();
+    public ResponseEntity<String> createOrder(@RequestParam boolean isOnlineOrder) {
+
+        if (isOnlineOrder) {
+            onlineOrderObj.createOrder();
+        } else {
+            offlineOrderObj.createOrder();
+        }
         return ResponseEntity.status(HttpStatus.OK).body("Order Created");
     }
 }
